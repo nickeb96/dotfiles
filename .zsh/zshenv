@@ -1,0 +1,11 @@
+
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.local/bin"
+
+export MONO_GAC_PREFIX="/usr/local"
+
+export JAVA_HOME="$(/usr/libexec/java_home)"
+
+export CPATH="$HOME/.local/include"
+
+export LD_LIBRARY_PATH="$HOME/.local/lib"
+

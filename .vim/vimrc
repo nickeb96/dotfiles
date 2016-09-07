@@ -1,0 +1,136 @@
+
+" turn off logging to .viminfo
+set viminfo=
+
+" for proper syntax highlighting in shell scripts
+let g:is_posix = 1
+
+execute pathogen#infect()
+
+filetype plugin indent on
+syntax on
+
+"let g:solarized_termcolors=256
+"colorscheme badwolf
+
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_python_python_exec = 'python3'
+
+"let g:sh_no_error = 1 "messes with $() syntax error for sh
+
+syntax enable
+
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set expandtab
+
+" make screen scroll n lines before end
+set so=7
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+"set whichwrap+=<,>,h,l
+
+"filetype indent on
+
+"set mouse=a
+"noremap <ScrollWheelUp>      <nop>
+"noremap <S-ScrollWheelUp>    <nop>
+"noremap <C-ScrollWheelUp>    <nop>
+"noremap <ScrollWheelDown>    <nop>
+"noremap <S-ScrollWheelDown>  <nop>
+"noremap <C-ScrollWheelDown>  <nop>
+"noremap <ScrollWheelLeft>    <nop>
+"noremap <S-ScrollWheelLeft>  <nop>
+"noremap <C-ScrollWheelLeft>  <nop>
+"noremap <ScrollWheelRight>   <nop>
+"noremap <S-ScrollWheelRight> <nop>
+"noremap <C-ScrollWheelRight> <nop>
+
+nnoremap ; :
+
+"set virtualedit=onemore
+"noremap <silent> <Esc> <C-O>:stopinsert<CR>
+
+" cursor wrap arround
+"inoremap <Down> <C-o>gj
+"inoremap <Up> <C-o>gk
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+" Smart way to move between windows
+"map <C-j> <C-W>j
+"map <C-k> <C-W>k
+"map <C-h> <C-W>h
+"map <C-l> <C-W>l
+
+" Be smart when using tabs ;)
+"set smarttab
+
+" Linebreak on 500 characters
+"set lbr
+"set tw=500
+
+"set wrap "Wrap line
+
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=2\x7"
+
+
+nnoremap <down> 24j
+nnoremap <up> 24k
+
+function FixReadonlyMode()
+    if &readonly 
+        nnoremap <buffer> i :echom "This file is read-only"<cr>
+        nnoremap <buffer> I :echom "This file is read-only"<cr>
+        nnoremap <buffer> a :echom "This file is read-only"<cr>
+        nnoremap <buffer> A :echom "This file is read-only"<cr>
+        nnoremap <buffer> o :echom "This file is read-only"<cr>
+        nnoremap <buffer> O :echom "This file is read-only"<cr>
+        nnoremap <buffer> r :echom "This file is read-only"<cr>
+        nnoremap <buffer> R :echom "This file is read-only"<cr>
+        nnoremap <buffer> x :echom "This file is read-only"<cr>
+        nnoremap <buffer> d :echom "This file is read-only"<cr>
+    endif
+endfunction
+
+augroup configgroup
+    autocmd!
+    autocmd BufEnter * :call FixReadonlyMode() 
+    autocmd VimEnter * highlight clear SignColumn
+    autocmd FileType python setlocal commentstring=#\ %s
+    autocmd FileType python setlocal shiftwidth=4
+    autocmd FileType python setlocal tabstop=4
+    autocmd FileType python setlocal softtabstop=4
+    autocmd FileType python setlocal expandtab
+    autocmd FileType python setlocal number
+    autocmd FileType python setlocal showmatch
+    autocmd FileType python colorscheme molokai
+    autocmd FileType asm setlocal tabstop=2
+    autocmd FileType asm setlocal shiftwidth=2
+    autocmd FileType asm setlocal softtabstop=2
+"    autocmd BufEnter *.txt setlocal formatprg=fmt\ -s
+"    autocmd BufEnter *.txt setlocal spell
+"    autocmd BufEnter *.txt setlocal spelllang=en_us
+"    autocmd BufEnter *.txt colorscheme PaperColor
+    autocmd BufEnter Makefile setlocal noexpandtab
+    autocmd FileType c,cpp,cs,java autocmd BufWritePre <buffer> %s/\s\+$//e
+"    autocmd InsertEnter * : silent exec "!printf '\033]50;CursorShape=2\x7'" | exec ":redraw!"
+"    autocmd InsertLeave * : silent exec "!printf '\033]50;CursorShape=0\x7'" | exec ":redraw!"
+augroup END
+
+

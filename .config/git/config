@@ -1,0 +1,11 @@
+[user]
+	name = nickeb96
+	email = nickboyle5496@gmail.com
+[color]
+	ui = auto
+[core]
+	editor = vim
+[push]
+	default = current
+[hub]
+	protocol = https

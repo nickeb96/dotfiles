@@ -1,0 +1,60 @@
+
+
+autoload -Uz colors && colors  #setup color associative array
+autoload -Uz compinit && compinit -d "${ZDOTDIR}/caches/zcompdump"
+#^ setup autocompletion and set cache directory ^#
+
+
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
+#^ make completion ignore case ^#
+zstyle ':completion:*:functions' ignored-patterns '_*'
+#^ make completion ignore functions starting with underscore ^#
+
+
+autoload -Uz run-help  #turn on help
+autoload -Uz run-help-git  #enable git help
+autoload -Uz run-help-ip  #enable ip help
+autoload -Uz run-help-openssl  #enable openssl help
+autoload -Uz run-help-p4   #enable p4 help
+autoload -Uz run-help-sudo  #enable sudo help
+unalias run-help 2> /dev/null
+alias rtfm=run-help
+
+
+export CLICOLOR=''  #enable colored output for commands like ls
+export EDITOR='vim'  #set default editor
+export PAGER='less'  #set defaild pager
+export CASE_SENSITIVE='false'  #IDK
+export HISTFILE="${ZDOTDIR}/history/zhistory"  #set zsh history file location
+export SAVEHIST=1000  #IDK
+export HISTSIZE=1000  #IDK
+export LESSHISTFILE='/dev/null'  #keep less from dumping files in ~
+export LESSHISTSIZE=0  #keep less from savind history
+export PYTHONSTARTUP="${HOME}/.config/pystartup.py"  #set python startup file
+
+
+setopt automenu  #IDK
+setopt appendhistory  #IDK
+setopt histignoredups  #prevent duplicates in history file
+
+
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
+
+
+if brew command command-not-found-init > /dev/null; then
+    eval "$(brew command-not-found-init)"
+fi
+
+
+source "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "/usr/local/opt/zsh-history-substring-search/zsh-history-substring-search.zsh"
+
+
+source "${ZDOTDIR}/config/syntax-highlighter.zsh"
+
+
+source "${ZDOTDIR}/scripts/aliases.zsh"
+source "${ZDOTDIR}/scripts/prompt.zsh"
+
+

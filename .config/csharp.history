@@ -1,0 +1,10 @@
+using System;
+System.Writeln("hi");
+System.Write("hi");
+System.Writeline("hi");
+quit()
+quit
+exit
+exit()
+quit()
+quit

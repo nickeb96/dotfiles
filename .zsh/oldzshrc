@@ -1,0 +1,83 @@
+
+
+#### i dont know what these do ####
+autoload -Uz colors
+colors
+
+autoload -Uz compinit
+compinit -d "$HOME/.zsh/caches/zcompdump"
+
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+#autoload predict-on
+#predict-on
+
+
+#### things for help command ####
+autoload -Uz run-help
+autoload -Uz run-help-git
+autoload -Uz run-help-svn
+autoload -Uz run-help-svk
+unalias run-help
+alias help=run-help
+
+
+#### enviornment variables ####
+#export PS1='%m:%B%c%b %n%(!.#.$) '
+
+#export RPS1='%(1j.[%%%j].) <ex%?>'
+
+#export PS1='$(my-prompt)'
+
+export CLICOLOR="true"
+
+export MENU_COMPLETE="true"
+
+export PROMPT_EOL_MARK=" %B<--- newline inserted by zsh%b"
+
+export EDITOR="vim"
+
+export PAGER="less"
+
+export JIMMY_PHONE="+15189329501"
+
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
+
+export CASE_SENSITIVE="false"
+
+export HISTFILE="$HOME/.zsh/history/zhistory"
+
+export SAVEHIST=500
+
+export HISTSIZE=500
+
+export APPEND_HISTORY="true"
+
+export LESSHISTFILE="/dev/null"
+
+export LESSHISTSIZE=0
+
+
+#### key bindings ####
+bindkey "^[[A" history-substring-search-up
+
+bindkey "^[[B" history-substring-search-down
+
+
+#### aliases ####
+alias python=python3
+
+
+#### enable syntax highlighting ####
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+#### enable better history searching ####
+source $HOME/.zsh/scripts/zsh-history-substring-search.zsh
+
+
+#### load prompt script ####
+source $HOME/.zsh/scripts/prompt.zsh
+
+
+
