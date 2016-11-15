@@ -17,4 +17,5 @@ ZSH_HIGHLIGHT_STYLES[alias]='fg=green,bold'
 
 ZSH_HIGHLIGHT_STYLES[function]='fg=green,bold'
 
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=magenta,bold'
 

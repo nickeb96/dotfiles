@@ -1,7 +1,5 @@
-#!/usr/bin/env zsh
 
 export PROMPT='$(_myprompt)'
-
 export PROMPT_EOL_MARK=' %B<- \n added by zsh%b'
 
 setopt promptvars
@@ -16,16 +14,17 @@ function _myprompt {
     else
         wd="$(basename "$wd")"
     fi
-    wd="%{${fg_bold[default]}%}$wd%{${fg_no_bold[default]}%}"
+    wd="%{${fg_bold[blue]}%}$wd%{${fg_no_bold[default]}%}"
     local hostname="$(hostname -s)"
-    hostname='Timok'
+    hostname="%{${fg_bold[green]}%}${hostname}%{${fg_no_bold[default]}%}"
     local user="$USERNAME"
+    user="%{${fg_bold[blue]}%}${user}%{${fg_no_bold[default]}%}"
     local pchar='$'
     if [ "$EUID" -eq '0' ]; then
         pchar='#'
     fi
     if [ "$excode" -ne '0' ]; then
-        pchar="%{${fg[red]}%}$pchar%{${color_reset}%}"
+        pchar="%{${fg[red]}%}$pchar%{${fg[default]}%}"
     fi
     local jobcount="$(_jobcount)"
     if [ "$jobcount" -ne '0' ]; then
@@ -33,13 +32,13 @@ function _myprompt {
     else
         jobcount=''
     fi
-    local firstpart=''
-    if git rev-parse --is-inside-work-tree 1> /dev/null 2> /dev/null; then
-        firstpart="$(_gitprompt)"
-    else
-        firstpart="${jobcount}${hostname}:${wd}"
-    fi
-    printf "%s %s%s " "$firstpart" "$user" "$pchar"
+#    local firstpart=''
+#    if git rev-parse --is-inside-work-tree 1> /dev/null 2> /dev/null; then
+#        firstpart="$(_gitprompt)"
+#    else
+#        firstpart="${jobcount}${hostname}:${wd}"
+#    fi
+    printf "%s%s@%s:%s %s " "$jobcount" "$user" "$hostname" "$wd" "$pchar"
 }
 
 
@@ -54,3 +53,4 @@ function _gitprompt {
 function _jobcount {
     echo $(jobs | wc -l)
 }
+
